@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
+use App\Blog;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,15 +14,36 @@ class blogController extends Controller
      */
     public function index()
     {
-        $blog = DB::table('blog')
-            ->where('id', 1)
-            ->orWhere('details', null)
-            ->get();
 
-        dd($blog);
-        $blog = new blog();
-        $data['blog'] = $blog->blog();
-        $data['page_title'] = 'This is blog page';
-        return view('blog',$data);
+        //Blog::create(['title'=>'This is ORM title', 'details'=>'title-ORM', 'file'=>'file path ORM']);
+        //DB::table('blogs')->insert(['title'=>'This is first title', 'details'=>'title-1', 'file'=>'file path']);
+        //$blog = \DB::table('blogs');
+        //$blog =  $blog->get();
+        //$blog = new Blog();
+        //$blog = $blog->get();
+
+        //$blog = Blog::with('user')->get();
+        //dd($blog);
+
+        //$user = User::with('blogs')->get();
+        //dd($user);
+
+        //$blog = new Blog();
+        //$data['blog'] = $blog->blog();
+
+        $data['title'] = 'List of blogs';
+        $data['blogs'] = Blog::all();
+        return view('blog/index',$data);
+    }
+
+    public function create()
+    {
+        $data['title'] = 'Create new blog';
+        return view('blog/create',$data);
+    }
+    public function store(Request $request)
+    {
+        Blog::create(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
+        return redirect()->to('blogs');
     }
 }
