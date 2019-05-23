@@ -59,4 +59,10 @@ class blogController extends Controller
         Blog::where('id', $id)->update(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
         return redirect()->to('blogs');
     }
+
+    public function destroy($id)
+    {
+        Blog::where('id', $id)->delete();
+        return redirect()->to('blogs');
+    }
 }

@@ -25,7 +25,11 @@
                         <td><?php echo $blog->details; ?></td>
                         <td>
                             <a class="btn btn-info" href="<?php echo url('blog/edit/'.$blog->id); ?>">Edit</a>
-                            <a class="btn btn-danger" href="#">Delete</a>
+                            <form style="float: left;" action="<?php echo url('blogs/'.$blog->id); ?>" method="post">
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button onclick="return confirm('are you sure !!')" class="btn btn-danger" type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 <?php } ?>
