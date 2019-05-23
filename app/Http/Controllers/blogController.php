@@ -46,4 +46,17 @@ class blogController extends Controller
         Blog::create(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
         return redirect()->to('blogs');
     }
+
+    public function edit($id)
+    {
+        $data['title'] = 'Edit Blog';
+        $data['blog'] = Blog::where('id', $id)->first();
+        return view('blog/edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        Blog::where('id', $id)->update(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
+        return redirect()->to('blogs');
+    }
 }

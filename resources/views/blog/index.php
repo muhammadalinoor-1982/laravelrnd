@@ -24,8 +24,8 @@
                         <td><?php echo $blog->title; ?></td>
                         <td><?php echo $blog->details; ?></td>
                         <td>
-                            <a href="#">Edit</a>
-                            <a href="#">Delete</a>
+                            <a class="btn btn-info" href="<?php echo url('blog/edit/'.$blog->id); ?>">Edit</a>
+                            <a class="btn btn-danger" href="#">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>
