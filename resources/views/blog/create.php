@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-6">
             <h1><?php echo $title; ?></h1>
-            <form action="<?php echo url('blogs'); ?>" method="post">
+            <form action="<?php echo route('blog.store'); ?>" method="post">
                 <input type="hidden" name="_token" value="<?php echo csrf_token();?>">
                 <input required class="form-control" type="text" name="title" placeholder="Blog Title">
                 <textarea required class="form-control" name="details" id="" cols="30" rows="10"></textarea>

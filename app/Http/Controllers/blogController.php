@@ -32,7 +32,7 @@ class blogController extends Controller
         //$data['blog'] = $blog->blog();
 
         $data['title'] = 'List of blogs';
-        $data['blogs'] = Blog::all();
+        $data['blogs'] = Blog::orderBy('id', 'DESC')->get();
         return view('blog/index',$data);
     }
 
@@ -44,7 +44,7 @@ class blogController extends Controller
     public function store(Request $request)
     {
         Blog::create(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
-        return redirect()->to('blogs');
+        return redirect()->route('blog.index');
     }
 
     public function edit($id)
@@ -57,12 +57,12 @@ class blogController extends Controller
     public function update(Request $request, $id)
     {
         Blog::where('id', $id)->update(['title'=>$request->title, 'details'=>$request->details, 'user_id'=>1]);
-        return redirect()->to('blogs');
+        return redirect()->route('blog.index');
     }
 
     public function destroy($id)
     {
         Blog::where('id', $id)->delete();
-        return redirect()->to('blogs');
+        return redirect()->route('blog.index');
     }
 }

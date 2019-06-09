@@ -10,13 +10,13 @@
 <body>
     <div class="row">
         <div class="col-md-6">
-            <a class="btn btn-info" href="<?php echo url('blog/create'); ?>">Add new blog</a>
+            <a class="btn btn-info" href="<?php echo route('blog.create'); ?>">Add new blog</a>
             <table class="table table-bordered">
-                <tr>
-                    <th>id</th>
-                    <th>title</th>
-                    <th>details</th>
-                    <th>actions</th>
+                <tr style="text-align: center">
+                    <th>ID</th>
+                    <th>TITLE</th>
+                    <th>DETAILS</th>
+                    <th>ACTIONS</th>
                 </tr>
                 <?php foreach ($blogs as $blog){ ?>
                     <tr>
@@ -24,11 +24,11 @@
                         <td><?php echo $blog->title; ?></td>
                         <td><?php echo $blog->details; ?></td>
                         <td>
-                            <a class="btn btn-info" href="<?php echo url('blog/edit/'.$blog->id); ?>">Edit</a>
-                            <form style="float: left;" action="<?php echo url('blogs/'.$blog->id); ?>" method="post">
+                            <a style="float: left;" class="btn btn-info" href="<?php echo route('blog.edit',$blog->id); ?>">Edit</a>
+                            <form style="float: left;" action="<?php echo route('blog.destroy',$blog->id); ?>" method="post">
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                                 <input type="hidden" name="_method" value="DELETE">
-                                <button onclick="return confirm('are you sure !!')" class="btn btn-danger" type="submit">Delete</button>
+                                &nbsp;&nbsp; <button onclick="return confirm('are you sure !!')" class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         </td>
                     </tr>
